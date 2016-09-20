@@ -1,10 +1,11 @@
 require 'colorize'
 require_relative 'cursor.rb'
 require_relative 'board.rb'
+require 'byebug'
 
 class Display
 
-  attr_reader :board
+  attr_reader :board, :cursor
 
   def initialize(board, cursor = Cursor.new([0,0],board))
     @board = board
@@ -17,8 +18,9 @@ class Display
 
       result = []
       row.each_with_index do |el, idx2|
+      #  byebug
         if @cursor.cursor_pos == [idx1,idx2]
-          result << el.value.colorize(:green)
+          result << el.value.colorize({background: :green})
         else
           result << el.value
         end
@@ -33,4 +35,10 @@ end
 
 b = Board.new
 disp = Display.new(b)
-disp.render
+
+
+while true
+  disp.render
+  #debugger
+  disp.cursor.get_input
+end

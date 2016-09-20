@@ -1,8 +1,23 @@
 require 'colorize'
+require_relative 'board'
+
 class Piece
 
-  attr_accessor :value
-  def initialize
-    @value = "a"
+  attr_accessor :value, :color, :position, :board
+
+  def initialize (color,position,board)
+    @value = value
+    @color = color
+    @position = position
+    @board = board
   end
+
+  def moves
+    #array of possible moves
+  end
+
+  def to_s
+    self.value.colorize(:@color)
+  end
+
 end

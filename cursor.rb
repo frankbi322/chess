@@ -101,8 +101,8 @@ class Cursor
 
   def update_pos(diff)
     #double check
-    @cursor_pos[0] += diff[0]
-    @cursor_pos[1] += diff[1]
+    @cursor_pos[0] += diff[0] if (@cursor_pos[0] + diff[0]).between?(0,7)
+    @cursor_pos[1] += diff[1] if (@cursor_pos[1] + diff[1]).between?(0,7)
     @cursor_pos
   end
 
