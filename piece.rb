@@ -20,4 +20,10 @@ class Piece
     self.value.colorize(:@color)
   end
 
+  private
+
+  def move_into_check?
+
+  end
+
 end

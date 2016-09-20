@@ -1,12 +1,19 @@
 class Bishop < SlidingPiece
 
   def value
-    return "\u2657".white if self.color == "white"
-    "B" if self.color == "black"
+    return "\u2657" if self.color == "white"
+    return "B" if self.color == "black"
   end
 
-  def moves
+  protected
 
+  def move_dirs
+    [
+    [1,1],
+    [-1,-1],
+    [1,-1],
+    [-1,1]
+    ]
   end
 
 end

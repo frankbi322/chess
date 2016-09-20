@@ -48,11 +48,42 @@ class Board
   end
 
   def move(start_pos, end_pos)
+    #raise StandardError.new "invalid move"
     #raise exception if no piece at start
+    #replace start_pos with reference to null_piece
+    #replace whatever's at end_pos (null_piece or piece of opposite color) with copy of moved piece
+
   end
 
   def in_bounds(new_pos)
     self.move(start_pos,new_pos)
   end
+
+  def [](pos)
+    x,y = pos
+    @grid[x][y]
+  end
+
+  def []=(pos,value)
+    x,y = pos
+  end
+
+
+  def valid_move?
+    #piece's move must be in moveset
+    #piece must remain on the board
+    #cannot take spot of same player color
+    #cannot leave board in check against yourself as a result
+  end
+
+  def in_check?
+    #pieces.current_player_color.any?{valid_move can occupy other king's position}
+  end
+
+  def checkmate?
+      #other_color_pieces.none? {|piece| valid_move?}
+  end
+
+
 
 end

@@ -5,7 +5,14 @@ class Rook < SlidingPiece
     "R" if self.color == "black"
   end
 
-  def move_dirs
+  protected
 
+  def move_dirs
+    [
+    [0,1], #verticals and horizontals
+    [0,-1],
+    [1,0],
+    [-1,0]
+    ]
   end
 end
