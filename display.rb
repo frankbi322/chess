@@ -1,6 +1,5 @@
 require 'colorize'
 require_relative 'cursor.rb'
-require_relative 'board.rb'
 require 'byebug'
 
 class Display
@@ -28,17 +27,12 @@ class Display
       end
       puts result.join("  ")
     end
-
   end
-
 end
 
-b = Board.new
-disp = Display.new(b)
-
-
-while true
-  disp.render
-  #debugger
-  disp.cursor.get_input
-end
+#
+# while true
+#   disp.render
+#   #debugger
+#   disp.cursor.get_input
+# end

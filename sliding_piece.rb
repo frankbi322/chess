@@ -1,9 +1,12 @@
+require_relative 'piece.rb'
+require 'byebug'
+
 class SlidingPiece < Piece
 
   def moves
     possible_moves = []
-    move_dirs.each do |dir|
-      moves = grow_unblocked_moves_in_dir(dir[0],dir[1]) #xy coord of new_pos
+    move_dirs.each do |move_dir|
+      moves = grow_unblocked_moves_in_dir(move_dir)
       moves.each do |move|
         possible_moves << move
       end
@@ -29,22 +32,20 @@ class SlidingPiece < Piece
 
   private
 
-  def grow_unblocked_moves_in_dir(x,y)
+  def grow_unblocked_moves_in_dir(move_dir)
     grow_moves = []
-    move_dirs.each do |dir|
       new_pos = @position
-      new_pos = [new_pos[0]+dir[0],new_pos[1]+dir[1]]
-
+      new_pos = [new_pos[0] + move_dir[0] , new_pos[1] + move_dir[1]]
+      return grow_moves if new_pos[0] < 0 || new_pos[0] > 7 || new_pos[1] < 0 || new_pos[1] >7
       while @board[new_pos].is_a?(NullPiece)
         grow_moves << new_pos
-        new_pos = [new_pos[0]+dir[0],new_pos[1]+dir[1]]
+        new_pos = [new_pos[0]+move_dir[0],new_pos[1]+move_dir[1]]
       end
 
-      if @board[new_pos].color != self.color
+      if @board[new_pos].is_a?(Piece) && @board[new_pos].color != self.color
         grow_moves << new_pos
       end
 
-    end
     grow_moves
   end
 
